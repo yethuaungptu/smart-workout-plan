@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <script src="/javascripts/color-modes.js"></script>
+    <link href="/stylesheets/bootstrap.min.css" rel="stylesheet" />
+    <link href="/stylesheets/bootstrap-icons.min.css" rel="stylesheet" />
+    <script src="/javascripts/bootstrap.bundle.min.js"></script>
+
+    <title>Food</title>
+  </head>
+  <body>
+    <% include ./partial/navbar %>
+    <main>
+      <h1 class="mt-5 text-center text-primary">Food list</h1>
+      <div class="container">
+        <div class="row">
+          <div class="col-sm-12 col-md-12 col-lg-3"></div>
+          <div class="col-sm-12 col-md-12 col-lg-6">
+            <form action="/food" method="get" class="row g-3">
+              <div class="col">
+                <label for="name" class="visually-hidden">Name</label>
+                <input
+                  type="search"
+                  class="form-control"
+                  id="name"
+                  name="name"
+                  placeholder="<%= name ? name : 'Name' %>"
+                />
+              </div>
+              <div class="col">
+                <label for="category" class="visually-hidden">Category</label>
+                <select class="form-select mb-3" name="category">
+                  <option <%= category == '' ? 'selected':'' %> value="">All Category</option>
+                  <option <%= category == 'protein' ? 'selected':'' %> value="protein">Protein</option>
+                  <option <%= category == 'carbohydrate' ? 'selected':'' %> value="carbohydrate">Carbohydrate</option>
+                  <option <%= category == 'fat' ? 'selected':'' %> value="fat">Fat</option>
+                  <option <%= category == 'fruit' ? 'selected':'' %> value="fruit">Fruit</option>
+                  <option <%= category == 'vegetable' ? 'selected':'' %> value="vegetable">Vegetable</option>
+                  <option <%= category == 'drink' ? 'selected':'' %> value="drink">Drink</option>
+                </select>
+              </div>
+              <div class="col">
+                <button type="submit" class="btn btn-primary mb-3">
+                  Search
+                </button>
+              </div>
+            </form>
+          </div>
+          <div class="col-sm-12 col-md-12 col-lg-3"></div>
+        </div>
+        <div class="table-responsive">
+          <table class="table table-bordered border-primary">
+            <thead>
+              <th>Image</th>
+              <th>Name</th>
+              <th>Calorie</th>
+              <th>Per</th>
+              <th>Category</th>
+              <th>Description</th>
+            </thead>
+            <tbody>
+              <% for(var i = 0; i < foods.length; i++){%>
+              <tr>
+                <td>
+                  <img
+                    src="<%= foods[i].image %>"
+                    style="width: 100px"
+                    alt=""
+                  />
+                </td>
+                <td><%= foods[i].name %></td>
+                <td><%= foods[i].calorie %></td>
+                <td><%= foods[i].per %></td>
+                <td><%= foods[i].category %></td>
+                <td><%= foods[i].description %></td>
+              </tr>
+              <%}%>
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </main>
+    <% include ./partial/footer2 %>
+  </body>
+</html>

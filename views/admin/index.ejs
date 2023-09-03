@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="en" data-bs-theme="auto">
+  <head>
+    <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="description" content="" />
+    <meta
+      name="author"
+      content="Mark Otto, Jacob Thornton, and Bootstrap contributors"
+    />
+    <meta name="generator" content="Hugo 0.115.4" />
+    <title>Admin Home Page</title>
+
+    <% include ../partialA/head %>
+  </head>
+  <body>
+    <% include ../partialA/header %>
+    <div class="container-fluid">
+      <div class="row">
+        <% include ../partialA/sidebar %>
+
+        <main class="col-md-9 ms-sm-auto col-lg-10 px-md-4">
+          
+            <h2>Dashboard</h2>
+            <div class="row mt-5">
+              <div class="col-sm-12 col-md-6 col-lg-4">
+                <div class="card w-75 mb-3 text-center">
+                  <div class="card-body">
+                    <h5 class="card-title">Total Workouts</h5>
+                    <p class="card-text"><%= workoutCount %></p>
+                  </div>
+                </div>
+              </div>
+              <div class="col-sm-12 col-md-6 col-lg-4">
+                <div class="card w-75 mb-3 text-center">
+                  <div class="card-body">
+                    <h5 class="card-title">Total Challenges</h5>
+                    <p class="card-text"><%= challengeCount %></p>
+                  </div>
+                </div>
+              </div>
+              <div class="col-sm-12 col-md-6 col-lg-4">
+                <div class="card w-75 mb-3 text-center">
+                  <div class="card-body">
+                    <h5 class="card-title">Total Foods</h5>
+                    <p class="card-text"><%= foodCount %></p>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="row mt-5">
+              <div class="col-lg-6">
+                <h3>Recents Foods</h3>
+                <table class="table table-striped">
+                  <thead>
+                    <th>No</th>
+                    <th>Name</th>
+                    <th>Per</th>
+                    <th>Calories</th>
+                  </thead>
+                  <tbody>
+                    <% for(var i = 0; i < recentFood.length; i++){%>
+                    <tr>
+                      <td><%= i+1 %></td>
+                      <td><%= recentFood[i].name %></td>
+                      <td><%= recentFood[i].per %></td>
+                      <td><%= recentFood[i].calorie %></td>
+                    </tr>
+                  <%}%>
+                  </tbody>
+                </table>
+              </div>
+              <div class="col-lg-6">
+                <h3>Recents Workouts</h3>
+                <table class="table table-striped">
+                  <thead>
+                    <th>No</th>
+                    <th>Title</th>
+                    <th>Category</th>
+                  </thead>
+                  <tbody>
+                    <% for(var i = 0; i < recentWorkout.length; i++){%>
+                    <tr>
+                      <td><%= i + 1 %></td>
+                      <td><%= recentWorkout[i].title %></td>
+                      <td><%= recentWorkout[i].category %></td>
+                    </tr>
+                  <%}%>
+                  </tbody>
+                </table>
+              </div>
+            </div>
+        </main>
+      </div>
+    </div>
+    
+  </body>
+</html>

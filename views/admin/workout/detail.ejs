@@ -1,0 +1,83 @@
+<!-- <!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Workout Detail</title>
+  </head>
+  <body>
+    
+  </body>
+</html> -->
+
+<!DOCTYPE html>
+<html lang="en" data-bs-theme="auto">
+  <head>
+    <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="description" content="" />
+    <meta
+      name="author"
+      content="Mark Otto, Jacob Thornton, and Bootstrap contributors"
+    />
+    <meta name="generator" content="Hugo 0.115.4" />
+    <title>Admin Workout detail</title>
+
+    <% include ../../partialA/head %>
+  </head>
+  <body>
+    <% include ../../partialA/header %>
+    <div class="container-fluid">
+      <div class="row">
+        <% include ../../partialA/sidebar %>
+
+        <main class="col-md-9 ms-sm-auto col-lg-10 px-md-4">
+          <h1>Workout Detail</h1>
+          <div class="row border border-1 border-primary p-3">
+            <div class="col-sm-12 col-md-12 col-lg-6 border border-1 border-warning p-2 rounded">
+              Title : <%= workout.title %> <br />
+              Type : <%= workout.type %> <br />
+              Category : <%= workout.category %> <br />
+              Description : <%= workout.description %> <br />
+            </div>
+            <div class="col-sm-12 col-md-12 col-lg-6">
+              <% if(workout.cover){%>
+                <img src="<%= workout.cover %>" class="img-fluid" alt="" />
+                <%}%>
+            </div>
+          </div>
+          <div class="row mt-3">
+            <div class="col d-grid">
+              <a href="/admin/workoutupdate/<%= workout._id %>" class="btn btn-warning"
+                >Update</a
+              >
+            </div>
+            <div class="col d-grid">
+              <a href="/admin/workoutdelete/<%= workout._id %>" class="btn btn-danger"
+                >Delete</a
+              >
+            </div>
+          </div>
+          <div class="row mt-3">
+            <h2>Challenges</h2>
+            <% for(var i = 0; i < challenges.length; i++){%>
+            <div class="col-sm-12 col-md-6 col-lg-4">
+              <div class="card border-success mb-3" style="max-width: 18rem;">
+                <div class="card-header bg-transparent border-success">Day <%= challenges[i].day %></div>
+                <div class="card-body text-success">
+                  <h5 class="card-title text-primary"><%= challenges[i].title %></h5>
+                  <p class="card-text"><%= challenges[i].description %></p>
+                </div>
+                <div class="card-footer bg-transparent border-success d-grid"><a href="/admin/challengedetail/<%= challenges[i]._id%>" class="btn btn-primary">Detail</a></div>
+              </div>
+            </div>
+          <%}%>
+          </div>
+        </main>
+      </div>
+    </div>
+    
+  </body>
+</html>
+

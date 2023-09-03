@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="/stylesheets/bootstrap.min.css" />
+    <script src="/javascripts/bootstrap.bundle.min.js"></script>
+    <link rel="stylesheet" href="/stylesheets/bootstrap-icons.min.css" />
+    <title>Admin Login</title>
+  </head>
+  <body>
+    <div class="container mt-5 pt-5">
+      <div class="row gap-1">
+        <div class="col-lg-4 col-sm-12"></div>
+        <div
+          class="col-lg-4 col-sm-12 border border-3 p-3 rounded border-primary"
+        >
+          <main class="form-signin w-100 m-auto">
+            <form action="/login" method="post">
+              <h1 class="h3 mb-3 fw-normal">
+                <i
+                  class="bi bi-calendar-heart-fill"
+                  style="font-size: 35px; color: blueviolet"
+                ></i>
+                Login Here
+              </h1>
+              <div class="form-floating my-2">
+                <input
+                  type="email"
+                  class="form-control"
+                  id="email"
+                  name="email"
+                  placeholder="email"
+                />
+                <label for="email">Email</label>
+              </div>
+              <div class="form-floating my-2">
+                <input
+                  type="password"
+                  class="form-control"
+                  id="password"
+                  name="password"
+                  placeholder="Password"
+                />
+                <label for="password">Password</label>
+              </div>
+
+              <button class="btn btn-primary w-100 py-2 mb-4" type="submit">
+                Login
+              </button>
+            </form>
+          </main>
+        </div>
+        <div class="col-lg-4 col-sm-12"></div>
+      </div>
+    </div>
+  </body>
+</html>

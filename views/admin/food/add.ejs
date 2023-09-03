@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html lang="en" data-bs-theme="auto">
+  <head>
+    <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="description" content="" />
+    <meta
+      name="author"
+      content="Mark Otto, Jacob Thornton, and Bootstrap contributors"
+    />
+    <meta name="generator" content="Hugo 0.115.4" />
+    <title>Admin Food add</title>
+
+    <% include ../../partialA/head %>
+  </head>
+  <body>
+    <% include ../../partialA/header %>
+    <div class="container-fluid">
+      <div class="row">
+        <% include ../../partialA/sidebar %>
+
+        <main class="col-md-9 ms-sm-auto col-lg-10 px-md-4">
+          <div class="row">
+            <div class="col-sm-12 col-md-12 col-lg-3"></div>
+            <div class="col-sm-12 col-md-12 col-lg-6 border border-1 p-3 rounded border-primary mt-5">
+              <div class="form-signin w-100 m-auto">
+                <h1 class="h3 mb-3 fw-normal">
+                  Food Add
+                </h1>
+                <form
+                  action="/admin/foodadd"
+                  method="post"
+                  enctype="multipart/form-data">
+                  <div class="form-floating my-2">
+                    <input
+                      type="text"
+                      class="form-control"
+                      id="name"
+                      name="name"
+                      placeholder="Name"
+                    />
+                    <label for="name">Name</label>
+                  </div>
+                  <div class="form-floating my-2">
+                    <input
+                      type="number"
+                      class="form-control"
+                      id="calorie"
+                      name="calorie"
+                      placeholder="Calorie"
+                    />
+                    <label for="calorie">Calorie</label>
+                  </div>
+                  <div class="form-floating my-2">
+                    <input
+                      type="text"
+                      class="form-control"
+                      id="per"
+                      name="per"
+                      placeholder="Per"
+                    />
+                    <label for="per">Per</label>
+                  </div>
+                  <div class="form-floating my-2">
+                    <select name="category" id="category" class="form-select">
+                      <option value="protein">Protein</option>
+                      <option value="carbohydrate">Carbohydrate</option>
+                      <option value="fat">Fat</option>
+                      <option value="fruit">Fruit</option>
+                      <option value="vegetable">Vegetable</option>
+                      <option value="drink">Drink</option>
+                    </select >
+                    <label for="category">Category</label>
+                  </div>
+                  <div class="input-group my-2">
+                    <input
+                      type="file"
+                      class="form-control"
+                      id="image"
+                      name="image"
+                      placeholder="Image"
+                      accept="image/*"
+                    />
+                    <label for="image" class="input-group-text">Image</label>
+                  </div>
+                  <div class="form-floating my-2">
+                    <textarea
+                      class="form-control"
+                      id="description"
+                      name="description"
+                      placeholder="Description"
+                      style="height: 100px"
+                    ></textarea>
+                    <label for="description">Description</label>
+                  </div>
+                  <div class="d-grid">
+                  <input type="submit" class="btn btn-primary" value="Submit" />
+                </div>
+                </form>
+              </div>
+            </div>
+            <div class="col-sm-12 col-md-12 col-lg-3"></div>
+          </div>
+          
+        </main>
+      </div>
+    </div>
+    
+  </body>
+</html>
+

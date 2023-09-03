@@ -1,0 +1,280 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <script src="/javascripts/color-modes.js"></script>
+    <link href="/stylesheets/bootstrap.min.css" rel="stylesheet" />
+    <link href="/stylesheets/bootstrap-icons.min.css" rel="stylesheet" />
+    <script src="/javascripts/bootstrap.bundle.min.js"></script>
+
+    <title>Food</title>
+  </head>
+  <body>
+    <% include ./partial/navbar %>
+    <main>
+      <h1 class="mt-5 text-center text-primary">Diet</h1>
+      <div class="container">
+        <div class="row">
+          <div class="col-sm-12 col-md-12 col-lg-3"></div>
+          <div
+            class="col-sm-12 col-md-12 col-lg-6 border border-1 border-primary p-4 rounded"
+          >
+            <div class="mb-3">
+              <label for="gender" class="form-label">Gender</label>
+              <div class="row">
+                <div class="form-check col">
+                  <input
+                    class="form-check-input"
+                    type="radio"
+                    name="gender"
+                    id="male"
+                    value="male"
+                  />
+                  <label class="form-check-label" for="male"> Male </label>
+                </div>
+                <div class="form-check col">
+                  <input
+                    class="form-check-input"
+                    type="radio"
+                    name="gender"
+                    id="female"
+                    value="female"
+                    checked
+                  />
+                  <label class="form-check-label" for="female"> Female </label>
+                </div>
+              </div>
+            </div>
+            <div class="mb-3">
+              <label for="age" class="form-label">Age</label>
+              <input
+                type="number"
+                class="form-control"
+                id="age"
+                placeholder="Age"
+              />
+            </div>
+            <div class="mb-3">
+              <label for="feet" class="form-label">Height</label>
+              <div class="row">
+                <div class="col">
+                  <input
+                    type="number"
+                    class="form-control"
+                    id="feet"
+                    placeholder="Feet"
+                  />
+                </div>
+                <div class="col">
+                  <input
+                    type="number"
+                    class="form-control"
+                    id="inches"
+                    placeholder="Inches"
+                  />
+                </div>
+              </div>
+            </div>
+            <div class="mb-3">
+              <label for="currentWeight" class="form-label"
+                >Current Weight (lbs)</label
+              >
+              <input
+                type="number"
+                class="form-control"
+                id="currentWeight"
+                placeholder="LBS"
+              />
+            </div>
+            <div class="mb-3">
+              <label for="goalWeight" class="form-label"
+                >Goal Weight (lbs)</label
+              >
+              <input
+                type="number"
+                class="form-control"
+                id="goalWeight"
+                placeholder="LBS"
+              />
+            </div>
+            <div class="mb-3">
+              <label for="month" class="form-label">Month</label>
+              <select id="month" class="form-select">
+                <option selected value="">Choose...</option>
+                <option value="1">1 Month</option>
+                <option value="2">2 Month</option>
+                <option value="3">3 Month</option>
+                <option value="4">4 Month</option>
+                <option value="5">5 Month</option>
+              </select>
+            </div>
+            <div class="mb-3">
+              <label for="exercise" class="form-label">Exercise</label>
+              <select id="exercise" class="form-select">
+                <option selected value="">Choose...</option>
+                <option value="1">No active</option>
+                <option value="2">Light</option>
+                <option value="3">Normal</option>
+                <option value="4">Heavy</option>
+                <option value="5">Extra</option>
+              </select>
+            </div>
+            <div class="mb-3 d-grid">
+              <button class="btn btn-primary btn-block" onclick="cal()">
+                Calculate
+              </button>
+            </div>
+          </div>
+          <div class="col-sm-12 col-md-12 col-lg-3"></div>
+        </div>
+        <div class="row m-5 d-none" id="res">
+          <div class="col-sm-12 col-md-12 col-lg-6">
+            <h3>You Need to <span id="finalCal">-</span> Calories/day</h3>
+            <table class="table table-bordered border-primary">
+              <thead>
+                <th>Weight Parameters</th>
+                <th>value</th>
+              </thead>
+              <tbody>
+                <tr>
+                  <td>Current Weight</td>
+                  <td id="cWeight"></td>
+                </tr>
+                <tr>
+                  <td>Goal Weight</td>
+                  <td id="gWeight"></td>
+                </tr>
+                <tr>
+                  <td>Goal Time (In days)</td>
+                  <td id="time"></td>
+                </tr>
+                <tr>
+                  <td>To Maintain Weight (calorie/day)</td>
+                  <td id="tdee"></td>
+                </tr>
+                <tr>
+                  <td>Calorie Deficit (calorie/day)</td>
+                  <td id="deficit"></td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+          <div class="col-sm-12 col-md-12 col-lg-6">
+            <h3>Zigzag Plan</h3>
+            <table class="table table-bordered border-primary">
+              <thead>
+                <th>Day Name</th>
+                <th>Calories/day</th>
+              </thead>
+              <tbody>
+                <tr>
+                  <td>Sunday</td>
+                  <td class="weekend"></td>
+                </tr>
+                <tr>
+                  <td>Monday</td>
+                  <td class="weekday"></td>
+                </tr>
+                <tr>
+                  <td>Tuesday</td>
+                  <td class="weekday"></td>
+                </tr>
+                <tr>
+                  <td>Wednesday</td>
+                  <td class="weekday"></td>
+                </tr>
+                <tr>
+                  <td>Thursday</td>
+                  <td class="weekday"></td>
+                </tr>
+                <tr>
+                  <td>Friday</td>
+                  <td class="weekday"></td>
+                </tr>
+                <tr>
+                  <td>Saturday</td>
+                  <td class="weekend"></td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+      </div>
+    </main>
+    <% include ./partial/footer %>
+  </body>
+  <script src="/javascripts/jquery-3.7.0.min.js"></script>
+  <script>
+    function cal() {
+      $("#res").removeClass("d-none");
+      var gender = $('input[name="gender"]:checked').val();
+      var age = $("#age").val();
+      var feet = $("#feet").val();
+      var inches = $("#inches").val();
+      var currentWeight = $("#currentWeight").val();
+      var goalWeight = $("#goalWeight").val();
+      var month = $("#month").val();
+      var exercise = $("#exercise").val();
+      var height = (Number(feet) + inches / 12) * 30.48;
+      var cw = currentWeight * 0.45359237;
+      var gw = goalWeight * 0.45359237;
+      var manBMR = 10 * cw + 6.25 * height - 5 * age + 5;
+      var womanBMR = 10 * cw + 6.25 * height - 5 * age - 161;
+
+      if (
+        gender != "" &&
+        age != "" &&
+        feet != "" &&
+        inches != "" &&
+        currentWeight != "" &&
+        goalWeight != "" &&
+        month != "" &&
+        exercise != ""
+      ) {
+        var BMR;
+        var TDEE;
+        if (gender == "male") {
+          BMR = 10 * cw + 6.25 * height - 5 * age + 5;
+        } else {
+          BMR = 10 * cw + 6.25 * height - 5 * age - 161;
+        }
+        switch (exercise) {
+          case "1":
+            TDEE = BMR * 1.2;
+            break;
+          case "2":
+            TDEE = BMR * 1.375;
+            break;
+          case "3":
+            TDEE = BMR * 1.55;
+            break;
+          case "4":
+            TDEE = BMR * 1.725;
+            break;
+          case "5":
+            TDEE = BMR * 1.9;
+            break;
+        }
+        var reduceKg = gw - cw;
+        var calorieEx = (reduceKg / (30 * month)) * 7700;
+        console.log(reduceKg);
+        console.log("TDEE", Math.floor(TDEE));
+        console.log("Daliy BMR", Math.floor(BMR));
+        console.log("calorieEx", Math.floor(calorieEx));
+        console.log("Final Cal", Math.floor(TDEE + calorieEx));
+        var result = Math.floor(TDEE + calorieEx);
+        $("#finalCal").html(result);
+        $("#cWeight").html(currentWeight + " lbs");
+        $("#gWeight").html(goalWeight + " lbs");
+        $("#time").html(month * 30);
+        $("#tdee").html(Math.floor(TDEE));
+        $("#deficit").html(Math.floor(calorieEx));
+        $(".weekend").html(result + Math.floor(result * 0.05));
+        $(".weekday").html(result - Math.floor(result * 0.02));
+      } else {
+        alert("Please fill all fields");
+      }
+    }
+  </script>
+</html>

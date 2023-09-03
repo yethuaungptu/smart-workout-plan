@@ -1,0 +1,72 @@
+<!-- <!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Workout List</title>
+    <style>
+      table,
+      tr,
+      td,
+      th {
+        border: 1px solid red;
+      }
+    </style>
+  </head>
+  <body>
+    
+  </body>
+</html> -->
+
+<!DOCTYPE html>
+<html lang="en" data-bs-theme="auto">
+  <head>
+    <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="description" content="" />
+    <meta
+      name="author"
+      content="Mark Otto, Jacob Thornton, and Bootstrap contributors"
+    />
+    <meta name="generator" content="Hugo 0.115.4" />
+    <title>Admin Home Page</title>
+
+    <% include ../../partialA/head %>
+  </head>
+  <body>
+    <% include ../../partialA/header %>
+    <div class="container-fluid">
+      <div class="row">
+        <% include ../../partialA/sidebar %>
+
+        <main class="col-md-9 ms-sm-auto col-lg-10 px-md-4">
+          
+          <h1>Workout List</h1>
+    <table class="table table-bordered border-primary">
+      <thead>
+        <th>Title</th>
+        <th>Type</th>
+        <th>Category</th>
+      </thead>
+      <tbody>
+        <% for(var i = 0; i < workouts.length; i++){%>
+        <tr>
+          <td>
+            <a href="/admin/workoutdetail/<%= workouts[i]._id %>"
+              ><%= workouts[i].title %></a
+            >
+          </td>
+          <td><%= workouts[i].type %></td>
+          <td><%= workouts[i].category %></td>
+        </tr>
+        <%}%>
+      </tbody>
+    </table>
+        </main>
+      </div>
+    </div>
+    
+  </body>
+</html>
+

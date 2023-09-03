@@ -1,0 +1,82 @@
+<!-- <!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Workout List</title>
+    <style>
+      table,
+      tr,
+      td,
+      th {
+        border: 1px solid red;
+      }
+    </style>
+  </head>
+  <body>
+    
+  </body>
+</html> -->
+
+<!DOCTYPE html>
+<html lang="en" data-bs-theme="auto">
+  <head>
+    <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="description" content="" />
+    <meta
+      name="author"
+      content="Mark Otto, Jacob Thornton, and Bootstrap contributors"
+    />
+    <meta name="generator" content="Hugo 0.115.4" />
+    <title>Admin Home Page</title>
+
+    <% include ../../partialA/head %>
+  </head>
+  <body>
+    <% include ../../partialA/header %>
+    <div class="container-fluid">
+      <div class="row">
+        <% include ../../partialA/sidebar %>
+
+        <main class="col-md-9 ms-sm-auto col-lg-10 px-md-4">
+          
+          <h1>Food List</h1>
+    <table class="table table-bordered border-primary">
+      <thead>
+        <th>Name</th>
+        <th>Calorie</th>
+        <th>Per</th>
+        <th>Category</th>
+        <th>CreatedBy</th>
+        <th>Image</th>
+        <th>Action</th>
+      </thead>
+      <tbody>
+        <% for(var i = 0; i < foods.length; i++){%>
+        <tr>
+          <td>
+              <%= foods[i].name %>
+          </td>
+          <td><%= foods[i].calorie %></td>
+          <td><%= foods[i].per %></td>
+          <td><%= foods[i].category %></td>
+          <td><%= foods[i].createdBy.name %></td>
+          <% if(foods[i].image){%>
+            <td><img src="<%= foods[i].image %>" width="70px" alt=""></td>
+          <%}else{%>
+            <td></td>
+          <%}%>
+          <td><a href="/admin/foodupdate/<%= foods[i]._id%>" class="btn btn-warning mx-2">Update</a><a href="/admin/fooddelete/<%= foods[i]._id%>" class="btn btn-danger mx-2">Delete</a></td>
+        </tr>
+        <%}%>
+      </tbody>
+    </table>
+        </main>
+      </div>
+    </div>
+    
+  </body>
+</html>
+

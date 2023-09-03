@@ -1,0 +1,134 @@
+<!DOCTYPE html>
+<html lang="en" data-bs-theme="auto">
+  <head>
+    <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="description" content="" />
+    <meta
+      name="author"
+      content="Mark Otto, Jacob Thornton, and Bootstrap contributors"
+    />
+    <meta name="generator" content="Hugo 0.115.4" />
+    <title>Admin Workout add</title>
+
+    <% include ../../partialA/head %>
+  </head>
+  <body>
+    <% include ../../partialA/header %>
+    <div class="container-fluid">
+      <div class="row">
+        <% include ../../partialA/sidebar %>
+
+        <main class="col-md-9 ms-sm-auto col-lg-10 px-md-4">
+          <div class="row">
+            <div class="col-sm-12 col-md-12 col-lg-3"></div>
+            <div class="col-sm-12 col-md-12 col-lg-6 border border-1 p-3 rounded border-primary mt-5">
+              <div class="form-signin w-100 m-auto">
+                <h1 class="h3 mb-3 fw-normal">
+                  Challenge Add
+                </h1>
+                <form
+                  action="/admin/challengeadd"
+                  method="post"
+                  enctype="multipart/form-data">
+                  <div class="form-floating my-2">
+                    <input
+                      type="text"
+                      class="form-control"
+                      id="title"
+                      name="title"
+                      placeholder="Title"
+                      required
+                    />
+                    <label for="title">Title</label>
+                  </div>
+                  <div class="form-floating my-2">
+                    <input
+                      type="number"
+                      class="form-control"
+                      id="day"
+                      name="day"
+                      placeholder="Day"
+                      min="1"
+                      max="100"
+                    />
+                    <label for="day">Day</label>
+                  </div>
+                  <div class="form-floating my-2">
+                    <select name="workoutId" id="workoutId" class="form-select">
+                      <% for(var i = 0; i < workouts.length; i++){%>
+                      <option value="<%= workouts[i]._id %>"><%= workouts[i].title %></option>
+                    <%}%>
+                    </select >
+                    <label for="workoutId">Workout</label>
+                  </div>
+                  <div class="input-group my-2">
+                    <input
+                      type="file"
+                      class="form-control"
+                      id="video"
+                      name="video"
+                      placeholder="Video"
+                      accept="video/*"
+                    />
+                    <label for="cover" class="input-group-text">Video</label>
+                  </div>
+                  <div class="form-floating my-2">
+                    <textarea
+                      class="form-control"
+                      id="description"
+                      name="description"
+                      placeholder="Description"
+                      style="height: 100px"
+                    ></textarea>
+                    <label for="description">Description</label>
+                  </div>
+                  <div class="d-grid">
+                  <input type="button" onclick="checkVal()" class="btn btn-primary" value="Submit" />
+                </div>
+                </form>
+              </div>
+            </div>
+            <div class="col-sm-12 col-md-12 col-lg-3"></div>
+          </div>
+          
+        </main>
+      </div>
+    </div>
+    
+  </body>
+  <script src="/javascripts/jquery-3.7.0.min.js"></script>
+  <script>
+    function checkVal() {
+      if (
+        $("#title").val() == "" ||
+        $("#day").val() == "" ||
+        $("#workoutId").val() == "" ||
+        $("#description").val() == "" || 
+        $("#day").val() < 1
+      ) {
+        alert("Please fill all fields or check day");
+      } else {
+        var data = {
+          day: $("#day").val(),
+          workoutId : $("#workoutId").val()
+        };
+        $.ajax("/admin/checkChallenge", {
+          type: "POST",
+          data: data,
+          success: function (result) {
+            console.log(result);
+            if (result.status) {
+              $("form").submit();
+            } else {
+              alert("Day is duplicated");
+              $("#day").val("").focus();
+            }
+          },
+        });
+      }
+    }
+  </script>
+</html>
+
